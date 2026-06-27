@@ -1,5 +1,7 @@
 package media.persistence;
 
+import media.model.*;
+
 public class ConnectionTest {
 	public static void main(String[] args) {
 		
@@ -10,6 +12,11 @@ public class ConnectionTest {
 			System.out.println("Connect Failed: " + e.getMessage());
 		}
 		
-
+		CategoryRepositoryImpl repo = new CategoryRepositoryImpl();
+		try {
+		repo.save(new Category("TestCategory"));
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
