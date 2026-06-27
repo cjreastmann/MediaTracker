@@ -2,15 +2,15 @@ package media.model;
 
 public class Category {
 	private int categoryId;
-	private String name;
+	private String categoryName;
 	
 	public Category(int categoryId, String name) {
 		this.categoryId = categoryId;
-		this.name = name;
+		this.categoryName = name;
 	}
 	
-	public String getName() {
-		return name;
+	public String getCategoryName() {
+		return categoryName;
 	}
 	
 	public int getCategoryId() {
