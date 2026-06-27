@@ -1,22 +1,25 @@
 package media.persistence;
 
+import java.sql.SQLException;
+
 import media.model.*;
 
 public class ConnectionTest {
-	public static void main(String[] args) {
-		
-		try{
-			DatabaseConnection.getConnection();
-			System.out.println("Connect Successful");
-		}catch(Exception e) {
-			System.out.println("Connect Failed: " + e.getMessage());
-		}
-		
+	public static void main(String[] args) throws SQLException {
+		//throws SQLException only for tests
+	
+		DatabaseConnection.getConnection();
+		System.out.println("Connect Successful");
+	
 		CategoryRepositoryImpl repo = new CategoryRepositoryImpl();
-		try {
-		repo.save(new Category("TestCategory"));
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
+		
+		repo.updateName(2, "Food");
+		
+		repo.delete(2);
+		
+		System.out.println(repo.findById(2));
+		
+		System.out.println(repo.findAll());
+		
 	}
 }

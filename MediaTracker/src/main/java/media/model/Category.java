@@ -23,6 +23,13 @@ public class Category {
 		return categoryId;
 	}
 	
+	
+	//findById readable
+	@Override
+	public String toString() {
+	    return "Category: id = " + categoryId + ", name = " + categoryName + "";
+	}
+	
 	//maybe add setter for name later
 	
 
