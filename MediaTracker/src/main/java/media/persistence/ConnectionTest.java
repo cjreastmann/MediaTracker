@@ -12,14 +12,18 @@ public class ConnectionTest {
 		System.out.println("Connect Successful");
 	
 		CategoryRepositoryImpl repo = new CategoryRepositoryImpl();
+		TagRepositoryImpl tag = new TagRepositoryImpl();
+	
+		tag.delete(1);
 		
-		repo.updateName(2, "Food");
-		
-		repo.delete(2);
+		tag.updateName(3, "sweet");
 		
 		System.out.println(repo.findById(2));
-		
 		System.out.println(repo.findAll());
+		
+		System.out.println(tag.findById(2));
+		System.out.println(tag.findAll());
+		
 		
 	}
 }

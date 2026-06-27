@@ -29,4 +29,9 @@ public class Tag {
 		tagName = t;
 	}
 	
+	@Override
+	public String toString() {
+		return "Tags: id = " + tagId + ",   name = " + tagName; 
+	}
+	
 }
