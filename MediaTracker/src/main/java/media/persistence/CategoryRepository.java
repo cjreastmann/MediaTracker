@@ -7,6 +7,6 @@ public interface CategoryRepository {
     public void save(Category category);
     Category findById(int categoryId);
     List<Category> findAll();
-    public void updateName(int categoryId, String categoryName);
+    public void updateCategoryName(int categoryId, String categoryName);
     public void delete(int categoryId);
 }
