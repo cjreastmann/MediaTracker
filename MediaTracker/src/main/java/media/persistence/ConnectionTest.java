@@ -13,11 +13,16 @@ public class ConnectionTest {
 	
 		CategoryRepositoryImpl repo = new CategoryRepositoryImpl();
 		TagRepositoryImpl tag = new TagRepositoryImpl();
-	
-		tag.delete(1);
+		ItemRepositoryImpl item = new ItemRepositoryImpl();
 		
-		tag.updateName(3, "sweet");
+		System.out.println(item.findAllInCategory(3));
 		
+		
+		item.updateTitle(10, "Regular Show");
+		
+		System.out.println(item.findById(10));
+		System.out.println(item.findAll());
+
 		System.out.println(repo.findById(2));
 		System.out.println(repo.findAll());
 		

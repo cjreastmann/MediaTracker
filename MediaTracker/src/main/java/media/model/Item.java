@@ -57,5 +57,9 @@ public class Item {
 	public void setCategoryId(int n) {
 		categoryId = n;
 	}
+	
+	public String toString() {
+		return "Item: id = " + itemId + ", title: " + title + ", category id = " + categoryId + ", status = " + status + ", date added = " + dateAdded;
+	}
 
 }
