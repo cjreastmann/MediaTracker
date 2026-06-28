@@ -7,6 +7,7 @@ import java.sql.*;
 import java.time.LocalDate;
 
 import media.model.Item;
+import media.model.Tag;
 
 public class ItemRepositoryImpl implements ItemRepository{
 	public void save(Item item) throws SQLException{
@@ -78,6 +79,16 @@ public class ItemRepositoryImpl implements ItemRepository{
 		stmt.executeUpdate();
 	}
 	
+	public void delete(int itemId)  throws SQLException{
+		Connection conn = DatabaseConnection.getConnection();
+		String sql = "DELETE FROM item WHERE item_id = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, itemId);
+		stmt.executeUpdate();
+	}
+	
+	//In relation to categories
+	
 	public void updateCategoryId(int itemId, int categoryId) throws SQLException{
 		Connection conn = DatabaseConnection.getConnection();
 		String sql = "UPDATE item SET category_id = ? WHERE item_id = ?";
@@ -106,12 +117,38 @@ public class ItemRepositoryImpl implements ItemRepository{
 		return item;
 	}
 	
-	public void delete(int itemId)  throws SQLException{
+	//Item in relation to Tag
+	public void addTag(int itemId, int tagId) throws SQLException{
 		Connection conn = DatabaseConnection.getConnection();
-		String sql = "DELETE FROM item WHERE item_id = ?";
+		String sql = "INSERT INTO item_tag (item_id, tag_id) VALUES (?, ?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, itemId);
+		stmt.setInt(2, tagId);
 		stmt.executeUpdate();
 	}
-
+	
+	public void removeTag(int itemId, int tagId) throws SQLException{
+		Connection conn = DatabaseConnection.getConnection();
+		String sql = "DELETE FROM item_tag WHERE item_id = ? AND tag_id = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, itemId);
+		stmt.setInt(2, tagId);
+		stmt.executeUpdate();
+	}
+	
+	public List<Tag> getTagsForItem(int itemId) throws SQLException{
+		Connection conn = DatabaseConnection.getConnection();
+		String sql = "SELECT tag.tag_id, tag.name FROM tag JOIN item_tag ON tag.tag_id = item_tag.tag_id WHERE item_tag.item_id = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, itemId);
+		List<Tag> itemTags = new ArrayList<Tag>();
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			int tagID = rs.getInt("tag_id");
+			String tagName = rs.getString("name");
+			Tag itemTagID = new Tag(tagID, tagName);
+			itemTags.add(itemTagID);
+		}
+		return itemTags;
+	}
 }

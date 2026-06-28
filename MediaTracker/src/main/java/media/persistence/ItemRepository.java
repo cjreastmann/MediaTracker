@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ItemRepository {
+	//methods for Items with relation to categories
 	public void save(Item item) throws SQLException;
 	Item findById(int itemId) throws SQLException;
 	List<Item> findAll() throws SQLException;
@@ -15,5 +16,8 @@ public interface ItemRepository {
 	List<Item> findAllInCategory(int categoryId) throws SQLException;
 	public void delete(int itemId) throws SQLException;
 	
-
+	//methods for Items with relation to Tags
+	void addTag(int itemId, int tagId) throws SQLException;
+	void removeTag(int itemId, int tagId) throws SQLException;
+	List<Tag> getTagsForItem(int itemId) throws SQLException;
 }
