@@ -36,6 +36,9 @@ public class TagService {
 	}
 	
 	public void removeTag(int tagId) throws SQLException {
+		if(repo.findById(tagId) == null) {
+			throw new IllegalArgumentException("Tag with id " + tagId + " does not exist.");
+		}
 		repo.delete(tagId);
 	}
 

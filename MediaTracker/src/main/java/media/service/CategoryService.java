@@ -36,6 +36,9 @@ public class CategoryService {
 	}
 	
 	public void removeCategory(int categoryId)throws SQLException{
+		if(repo.findById(categoryId) == null) {
+			throw new IllegalArgumentException("Category with id " + categoryId + " does not exist.");
+		}
 		repo.delete(categoryId);
 	}
 	
