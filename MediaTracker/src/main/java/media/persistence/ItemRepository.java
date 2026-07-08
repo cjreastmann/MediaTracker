@@ -8,6 +8,7 @@ import java.util.List;
 public interface ItemRepository {
 	//methods for Items with relation to categories
 	public void save(Item item) throws SQLException;
+	List<Item> getItemsByStatus(String status) throws SQLException;
 	Item findById(int itemId) throws SQLException;
 	List<Item> findAll() throws SQLException;
 	public void updateTitle(int itemId, String title) throws SQLException;

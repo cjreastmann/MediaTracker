@@ -43,6 +43,13 @@ public class ItemService {
 		return repo.findAll();
 	}
 	
+	public List<Item> getItemsByStatus(String status) throws SQLException{
+		status = status.toLowerCase();
+		if(!isValidStatus(status)) {
+			throw new IllegalArgumentException("Status must be want/in_progress/done");
+		}
+		return repo.getItemsByStatus(status);
+	}
 	
 	public void updateTitle(int itemId, String title) throws SQLException {
 		if (title == null || title.isBlank()) {
