@@ -27,9 +27,10 @@ public class CategoryService {
 		repo.updateName(categoryId, categoryName);
 	}
 	
-	public Category getCategory(int categoryId) throws SQLException{
+	public Category getCategoryID(int categoryId) throws SQLException{
 		return repo.findById(categoryId);
 	}
+	
 	
 	public List<Category> getAllCategories() throws SQLException{
 		return repo.findAll();

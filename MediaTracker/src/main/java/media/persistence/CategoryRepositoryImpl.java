@@ -34,6 +34,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 		}
 	};
 	
+	
 	public List<Category> findAll() throws SQLException{
 		Connection conn = DatabaseConnection.getConnection(); //connect
 		String sql = "SELECT * FROM category"; //select all from category
