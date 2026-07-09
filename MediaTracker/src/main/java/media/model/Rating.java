@@ -19,6 +19,10 @@ public class Rating {
 		
 	}
 	
+	public Rating(int itemId, int score, String review) {
+		this(0, itemId, score, review, LocalDate.now());
+	}
+	
 	//unknown rating, possible no review just score, local date added
 	public Rating(int itemId, int score) {
 		this(0, itemId, score, null, LocalDate.now());
@@ -53,6 +57,11 @@ public class Rating {
 	
 	public void setReview(String r) {
 		review = r;
+	}
+	
+	@Override
+	public String toString() {
+		return "Rating: id = " + ratingId + ", itemId = " + itemId + ", score = " + score + "/10, review = " + review + ", date rated = " + dateRated; 
 	}
 	
 }
